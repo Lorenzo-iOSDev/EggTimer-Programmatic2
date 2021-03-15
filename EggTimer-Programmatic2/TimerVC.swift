@@ -12,7 +12,7 @@ class TimerVC: UIViewController {
     var titleLabel = UILabel()
     var horizontalStackView = UIStackView()
     var verticalStackView = UIStackView()
-    var progressBar = UIProgressView()
+    var progressBarView = UIView()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +28,8 @@ class TimerVC: UIViewController {
         configureProgressView()
         
         //config stack views
-        configureHStackView()
         configureVStackView()
+        configureHStackView()
     }
     
     func configureTitleLabel(){
@@ -42,16 +42,7 @@ class TimerVC: UIViewController {
     func configureHStackView() {
         horizontalStackView.axis = .horizontal
         horizontalStackView.spacing = 5
-        horizontalStackView.backgroundColor = .systemTeal
         horizontalStackView.distribution = .fillEqually
-        
-//        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            horizontalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            horizontalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//            horizontalStackView.widthAnchor.constraint(equalToConstant: view.frame.width),
-//            horizontalStackView.heightAnchor.constraint(equalToConstant: 300)
-//        ])
         
         let softEggIV = UIImageView(image: #imageLiteral(resourceName: "soft_egg"))
         softEggIV.contentMode = .scaleAspectFit
@@ -69,15 +60,31 @@ class TimerVC: UIViewController {
     }
     
     func configureProgressView() {
-        progressBar.progress = 0.5
+        //UIProgressBar must be nested in ProgressBarView because it was being stretched to fill by the vertical stack.
+        //Using ProgressBarView, that gets stretched to fill instead and UIProgress bar can have its constraint inside it.
+        
+        let progressBar = UIProgressView()
+        progressBarView.addSubview(progressBar)
+        progressBar.progress = 0.5 // Placeholder
+        //progressBar.contentMode = .scaleAspectFill
+        
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressBar.heightAnchor.constraint(equalToConstant: 10),
+            progressBar.centerYAnchor.constraint(equalTo: progressBarView.centerYAnchor),
+            progressBar.leadingAnchor.constraint(equalTo: progressBarView.leadingAnchor),
+            progressBar.trailingAnchor.constraint(equalTo: progressBarView.trailingAnchor)
+        ])
+        
     }
     
     func configureVStackView() {
         view.addSubview(verticalStackView)
         
         verticalStackView.axis = .vertical
+        verticalStackView.alignment = .fill
         verticalStackView.distribution = .fillEqually
-        verticalStackView.backgroundColor = .systemYellow
+        verticalStackView.backgroundColor = .systemYellow //for debug
         
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -90,6 +97,6 @@ class TimerVC: UIViewController {
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(horizontalStackView)
         //add progress bar
-        verticalStackView.addArrangedSubview(progressBar)
+        verticalStackView.addArrangedSubview(progressBarView)
     }
 }
