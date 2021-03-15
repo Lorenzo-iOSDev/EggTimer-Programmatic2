@@ -9,21 +9,17 @@
 /* Begin PBXBuildFile section */
 		9C5E104E25FB0358004404BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5E104D25FB0358004404BA /* AppDelegate.swift */; };
 		9C5E105025FB0358004404BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5E104F25FB0358004404BA /* SceneDelegate.swift */; };
-		9C5E105225FB0358004404BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5E105125FB0358004404BA /* ViewController.swift */; };
-		9C5E105525FB0358004404BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5E105325FB0358004404BA /* Main.storyboard */; };
 		9C5E105725FB0359004404BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C5E105625FB0359004404BA /* Assets.xcassets */; };
-		9C5E105A25FB0359004404BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C5E105825FB0359004404BA /* LaunchScreen.storyboard */; };
+		9C5E106625FB0383004404BA /* TimerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5E106525FB0383004404BA /* TimerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9C5E104A25FB0358004404BA /* EggTimer-Programmatic2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EggTimer-Programmatic2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5E104D25FB0358004404BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C5E104F25FB0358004404BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9C5E105125FB0358004404BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9C5E105425FB0358004404BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C5E105625FB0359004404BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9C5E105925FB0359004404BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C5E105B25FB0359004404BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C5E106525FB0383004404BA /* TimerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +54,8 @@
 			children = (
 				9C5E104D25FB0358004404BA /* AppDelegate.swift */,
 				9C5E104F25FB0358004404BA /* SceneDelegate.swift */,
-				9C5E105125FB0358004404BA /* ViewController.swift */,
-				9C5E105325FB0358004404BA /* Main.storyboard */,
+				9C5E106525FB0383004404BA /* TimerVC.swift */,
 				9C5E105625FB0359004404BA /* Assets.xcassets */,
-				9C5E105825FB0359004404BA /* LaunchScreen.storyboard */,
 				9C5E105B25FB0359004404BA /* Info.plist */,
 			);
 			path = "EggTimer-Programmatic2";
@@ -124,9 +118,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C5E105A25FB0359004404BA /* LaunchScreen.storyboard in Resources */,
 				9C5E105725FB0359004404BA /* Assets.xcassets in Resources */,
-				9C5E105525FB0358004404BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,32 +129,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C5E105225FB0358004404BA /* ViewController.swift in Sources */,
 				9C5E104E25FB0358004404BA /* AppDelegate.swift in Sources */,
+				9C5E106625FB0383004404BA /* TimerVC.swift in Sources */,
 				9C5E105025FB0358004404BA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		9C5E105325FB0358004404BA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C5E105425FB0358004404BA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		9C5E105825FB0359004404BA /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9C5E105925FB0359004404BA /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9C5E105C25FB0359004404BA /* Debug */ = {
