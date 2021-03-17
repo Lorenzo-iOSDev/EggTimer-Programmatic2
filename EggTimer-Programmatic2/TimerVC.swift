@@ -13,11 +13,17 @@ class TimerVC: UIViewController {
     var horizontalStackView = UIStackView()
     var verticalStackView = UIStackView()
     var progressBarView = UIView()
+    var progressBar = UIProgressView()
         
     //Gesture Recognizers
     var gestureRecognizerSoft = UITapGestureRecognizer()
     var gestureRecognizerMed = UITapGestureRecognizer()
     var gestureRecognizerHard = UITapGestureRecognizer()
+    
+    var timer: Timer?
+    var timeLeft = 60
+    var timePassed = 0
+    var progress: Float = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,18 +44,69 @@ class TimerVC: UIViewController {
         configureHStackView()
     }
     
-    @objc func eggTapped() {
-        print("Egg tapped")
+    @objc func eggSoftTapped() {
+        titleLabel.text = "Soft Boiled Egg"
+        timeLeft = 15
+        timePassed = 0
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(startTimer),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
+    @objc func eggMedTapped() {
+        titleLabel.text = "Medium Boiled Egg"
+        timeLeft = 30
+        timePassed = 0
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(startTimer),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
+    @objc func eggHardTapped() {
+        titleLabel.text = "Hard Boiled Egg"
+        timeLeft = 60
+        timePassed = 0
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(startTimer),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
+    @objc func startTimer() {
+        progress = 0.0
+        
+        if (timePassed < timeLeft) {
+            timePassed += 1
+            
+            progress = Float(timePassed) / Float(timeLeft)
+            print(progress)
+            progressBar.progress = progress
+        } else {
+            titleLabel.text = "How would you like your eggs?"
+            timer?.invalidate()
+            timer = nil
+            progressBar.progress = 0.0
+            timePassed = 0
+            print("DING!") // Play Soundeffect
+        }
     }
     
     func configureGestureRecognizers() {
-        gestureRecognizerSoft = UITapGestureRecognizer(target: self, action: #selector(eggTapped))
+        gestureRecognizerSoft = UITapGestureRecognizer(target: self, action: #selector(eggSoftTapped))
         gestureRecognizerSoft.numberOfTapsRequired = 1
         
-        gestureRecognizerMed = UITapGestureRecognizer(target: self, action: #selector(eggTapped))
+        gestureRecognizerMed = UITapGestureRecognizer(target: self, action: #selector(eggMedTapped))
         gestureRecognizerMed.numberOfTapsRequired = 1
         
-        gestureRecognizerHard = UITapGestureRecognizer(target: self, action: #selector(eggTapped))
+        gestureRecognizerHard = UITapGestureRecognizer(target: self, action: #selector(eggHardTapped))
         gestureRecognizerHard.numberOfTapsRequired = 1
     }
     
@@ -90,9 +147,9 @@ class TimerVC: UIViewController {
         //UIProgressBar must be nested in ProgressBarView because it was being stretched to fill by the vertical stack.
         //Using ProgressBarView, that gets stretched to fill instead and UIProgress bar can have its constraint inside it.
         
-        let progressBar = UIProgressView()
+        //let progressBar = UIProgressView()
         progressBarView.addSubview(progressBar)
-        progressBar.progress = 0.5 // Placeholder
+        progressBar.tintColor = .systemYellow
         
         progressBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -110,7 +167,6 @@ class TimerVC: UIViewController {
         verticalStackView.axis = .vertical
         verticalStackView.alignment = .fill
         verticalStackView.distribution = .fillEqually
-        //verticalStackView.backgroundColor = .systemYellow //for debug
         
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
