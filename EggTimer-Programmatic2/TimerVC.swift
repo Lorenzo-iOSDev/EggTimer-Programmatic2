@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TimerVC: UIViewController {
+    
+    var audioPlayer = AVAudioPlayer()
 
     var titleLabel = UILabel()
     var horizontalStackView = UIStackView()
@@ -95,8 +98,14 @@ class TimerVC: UIViewController {
             timer = nil
             progressBar.progress = 0.0
             timePassed = 0
-            print("DING!") // Play Soundeffect
+            playAudio()
         }
+    }
+    
+    func playAudio(){
+        let dirURL = Bundle.main.url(forResource: "ding", withExtension: ".wav")
+        audioPlayer = try! AVAudioPlayer.init(contentsOf: dirURL!)
+        audioPlayer.play()
     }
     
     func configureGestureRecognizers() {
@@ -147,7 +156,6 @@ class TimerVC: UIViewController {
         //UIProgressBar must be nested in ProgressBarView because it was being stretched to fill by the vertical stack.
         //Using ProgressBarView, that gets stretched to fill instead and UIProgress bar can have its constraint inside it.
         
-        //let progressBar = UIProgressView()
         progressBarView.addSubview(progressBar)
         progressBar.tintColor = .systemYellow
         
